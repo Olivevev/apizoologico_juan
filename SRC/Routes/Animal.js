@@ -12,6 +12,12 @@ router.post("/animals", (req, res) => {
 module.exports = router;
 
 router.get("/animals", (req, res) => {
+    animalSchema.find({edad:{$gt:2}})
+    .then((data) => res.json(data))
+    .catch((error) => res.json({ message: error }));
+});
+
+router.get("/animals/all", (req, res) => {
     animalSchema.find()
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error }));
